@@ -7,6 +7,7 @@
 
 import React from 'react';
 import type {PropsWithChildren} from 'react';
+import Sign from './screens/AuthScreen/SignScreen'
 import {
   TouchableOpacity,
   Pressable,
@@ -31,23 +32,7 @@ function App(): JSX.Element {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.signIn}>Sign In</Text>
-      <Text style={styles.forgot}>with your email and password</Text>
-      <TextInput style={styles.input} placeholder="Enter email" />
-      <TextInput style={styles.input} placeholder="Enter Password" />
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.login}>Log In</Text>
-      </TouchableOpacity>
-      <Text style={styles.forgot}>
-        Forgot password?  <TouchableOpacity>
-          <Text style={styles.reset}>RESET</Text>
-        </TouchableOpacity>
-      </Text>
-      <TouchableOpacity>
-        <Text style={styles.create}>Create account</Text>
-      </TouchableOpacity>
-    </View>
+      <Sign />
   );
 }
 
