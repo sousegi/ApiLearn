@@ -11,8 +11,10 @@
   },
   "dependencies": {
     "expo": "^48.0.15",
+    "native-base": "^3.4.28",
     "react": "18.2.0",
-    "react-native": "0.71.7"
+    "react-native": "0.71.7",
+    "react-native-size-matters": "^0.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
