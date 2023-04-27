@@ -8,8 +8,7 @@
 import React from 'react';
 import type {PropsWithChildren} from 'react';
 import {
-  Button,
-  Box,
+  TouchableOpacity,
   Pressable,
   StyleSheet,
   Text,
@@ -37,16 +36,17 @@ function App(): JSX.Element {
       <Text style={styles.forgot}>with your email and password</Text>
       <TextInput style={styles.input} placeholder="Enter email" />
       <TextInput style={styles.input} placeholder="Enter Password" />
-      <Pressable style={styles.button}>
+      <TouchableOpacity style={styles.button}>
         <Text style={styles.login}>Log In</Text>
-      </Pressable>
+      </TouchableOpacity>
       <Text style={styles.forgot}>
-        Forgot password?
-        <Pressable>
+        Forgot password?  <TouchableOpacity>
           <Text style={styles.reset}>RESET</Text>
-        </Pressable>
+        </TouchableOpacity>
       </Text>
-      <Text style={styles.create}>Create account</Text>
+      <TouchableOpacity>
+        <Text style={styles.create}>Create account</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -91,9 +91,7 @@ const styles = StyleSheet.create({
     padding: 30,
   },
   reset: {
-    fontSize: 18,
     alignSelf: 'center',
-    padding: 30,
     color: '#1C58B2',
   },
   create: {
