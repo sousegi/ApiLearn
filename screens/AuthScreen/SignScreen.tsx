@@ -13,7 +13,7 @@ import {
     Text,
     TextInput,
     useColorScheme,
-    View,
+    View, Button,
 } from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
@@ -22,8 +22,11 @@ type SectionProps = PropsWithChildren<{
     title: string;
 }>;
 
-function Main(): JSX.Element {
+function Main({ navigation}): JSX.Element {
     const isDarkMode = useColorScheme() === 'dark';
+    const load = () => {
+        navigation.navigate('Reset')
+    }
 
     const backgroundStyle = {
         backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
@@ -40,7 +43,7 @@ function Main(): JSX.Element {
             </TouchableOpacity>
             <Text style={styles.forgot}>
                 Forgot password? <TouchableOpacity>
-                <Text style={styles.reset}>RESET</Text>
+                <Text style={styles.reset} onPress={load}>RESET</Text>
             </TouchableOpacity>
             </Text>
             <TouchableOpacity>

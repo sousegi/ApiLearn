@@ -7,7 +7,7 @@
 
 import React from 'react';
 import type {PropsWithChildren} from 'react';
-import Sign from './screens/AuthScreen/SignScreen'
+import MainStack from './navigation/Navigation'
 import {
   TouchableOpacity,
   Pressable,
@@ -32,7 +32,7 @@ function App(): JSX.Element {
   };
 
   return (
-      <Sign />
+      <MainStack />
   );
 }
 
