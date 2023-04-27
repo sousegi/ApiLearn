@@ -24,8 +24,14 @@ type SectionProps = PropsWithChildren<{
 
 function Main({ navigation}): JSX.Element {
     const isDarkMode = useColorScheme() === 'dark';
-    const load = () => {
+    const reset = () => {
         navigation.navigate('Reset')
+    }
+    const create = () => {
+        navigation.navigate('Create')
+    }
+    const profile = () => {
+        navigation.navigate('Profile')
     }
 
     const backgroundStyle = {
@@ -38,16 +44,16 @@ function Main({ navigation}): JSX.Element {
             <Text style={styles.forgot}>with your email and password</Text>
             <TextInput style={styles.input} placeholder="Enter email" />
             <TextInput style={styles.input} placeholder="Enter Password" />
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity style={styles.button} onPress={profile}>
                 <Text style={styles.login}>Log In</Text>
             </TouchableOpacity>
             <Text style={styles.forgot}>
                 Forgot password? <TouchableOpacity>
-                <Text style={styles.reset} onPress={load}>RESET</Text>
+                <Text style={styles.reset} onPress={reset}>RESET</Text>
             </TouchableOpacity>
             </Text>
             <TouchableOpacity>
-                <Text style={styles.create}>Create account</Text>
+                <Text style={styles.create} onPress={create}>Create account</Text>
             </TouchableOpacity>
         </View>
     );

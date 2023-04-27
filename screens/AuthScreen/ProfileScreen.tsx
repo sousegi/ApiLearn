@@ -22,7 +22,7 @@ type SectionProps = PropsWithChildren<{
     title: string;
 }>;
 
-function Create(): JSX.Element {
+function Profile(): JSX.Element {
     const isDarkMode = useColorScheme() === 'dark';
 
     const backgroundStyle = {
@@ -31,7 +31,7 @@ function Create(): JSX.Element {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.signIn}>this page is for create account</Text>
+            <Text style={styles.signIn}>this is profile page</Text>
         </View>
     );
 }
@@ -86,4 +86,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Create;
+export default Profile;
