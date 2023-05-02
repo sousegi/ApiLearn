@@ -5,7 +5,7 @@
  * @format
  */
 
-import React from 'react';
+import React, {useState} from 'react';
 import type {PropsWithChildren} from 'react';
 import {
     TouchableOpacity,
@@ -13,7 +13,7 @@ import {
     Text,
     TextInput,
     useColorScheme,
-    View, Button,
+    View, Button, Alert,
 } from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
@@ -24,15 +24,39 @@ type SectionProps = PropsWithChildren<{
 
 function Main({ navigation}): JSX.Element {
     const isDarkMode = useColorScheme() === 'dark';
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleLogin = async () => {
+        const response = await fetch('https://test.dev.ourbox.org/api/auth/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email,
+                password,
+            }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            Alert.alert('Login successful');
+        } else {
+            Alert.alert('Login failed');
+        }
+    };
+
     const reset = () => {
         navigation.navigate('Reset')
     }
     const create = () => {
         navigation.navigate('Create')
     }
-    const profile = () => {
-        navigation.navigate('Profile')
-    }
+    // const profile = () => {
+    //     navigation.navigate('Profile')
+    // }
 
     const backgroundStyle = {
         backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
@@ -42,9 +66,9 @@ function Main({ navigation}): JSX.Element {
         <View style={styles.container}>
             <Text style={styles.signIn}>Sign In</Text>
             <Text style={styles.forgot}>with your email and password</Text>
-            <TextInput style={styles.input} placeholder="Enter email" />
-            <TextInput style={styles.input} placeholder="Enter Password" />
-            <TouchableOpacity style={styles.button} onPress={profile}>
+            <TextInput style={styles.input} value={email} onChangeText={setEmail} placeholder="Enter email" />
+            <TextInput style={styles.input} value={password} onChangeText={setPassword} placeholder="Enter Password" secureTextEntry />
+            <TouchableOpacity style={styles.button} onPress={handleLogin}>
                 <Text style={styles.login}>Log In</Text>
             </TouchableOpacity>
             <Text style={styles.forgot}>
