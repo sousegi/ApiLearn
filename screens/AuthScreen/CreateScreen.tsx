@@ -5,7 +5,7 @@
  * @format
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import type {PropsWithChildren} from 'react';
 import {
     TouchableOpacity,
@@ -13,7 +13,7 @@ import {
     Text,
     TextInput,
     useColorScheme,
-    View, Button,
+    View, Button, Alert,
 } from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
@@ -22,7 +22,32 @@ type SectionProps = PropsWithChildren<{
     title: string;
 }>;
 
-function Create(): JSX.Element {
+function Create({ navigation}): JSX.Element {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleRegister = async () => {
+        const response = await fetch('https://test.dev.ourbox.org/api/auth/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                name,
+                email,
+                password,
+            }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            Alert.alert('Registration successful');
+        } else {
+            Alert.alert('Registration failed');
+        }
+    };
     const isDarkMode = useColorScheme() === 'dark';
 
     const backgroundStyle = {
@@ -31,7 +56,14 @@ function Create(): JSX.Element {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.signIn}>this page is for create account</Text>
+            <Text style={styles.signIn}>Sign In</Text>
+            <Text style={styles.forgot}>with your email and password</Text>
+            <TextInput style={styles.input} value={name} onChangeText={setName} placeholder="Enter Name" />
+            <TextInput style={styles.input} value={email} onChangeText={setEmail} placeholder="Enter email" />
+            <TextInput style={styles.input} value={password} onChangeText={setPassword} placeholder="Enter Password" secureTextEntry />
+            <TouchableOpacity style={styles.button} onPress={handleRegister}>
+                <Text style={styles.login}>Create account</Text>
+            </TouchableOpacity>
         </View>
     );
 }
