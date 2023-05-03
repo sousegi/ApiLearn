@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
         padding: 10,
         borderRadius: 10,
         alignItems: 'center',
-        backgroundColor: '#DB2927',
+        backgroundColor: '#0891b2',
     },
     login: {
         fontSize: 16,

@@ -54,9 +54,9 @@ function Main({ navigation}): JSX.Element {
     const create = () => {
         navigation.navigate('Create')
     }
-    // const profile = () => {
-    //     navigation.navigate('Profile')
-    // }
+    const profile = () => {
+        navigation.navigate('Profile')
+    }
 
     const backgroundStyle = {
         backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
         padding: 10,
         borderRadius: 10,
         alignItems: 'center',
-        backgroundColor: '#DB2927',
+        backgroundColor: '#0891b2',
     },
     login: {
         fontSize: 16,
@@ -124,12 +124,12 @@ const styles = StyleSheet.create({
     },
     reset: {
         alignSelf: 'center',
-        color: '#1C58B2',
+        color: '#0891b2',
     },
     create: {
         fontSize: 18,
         alignSelf: 'center',
-        color: '#1C58B2',
+        color: '#0891b2',
     },
 });
 
