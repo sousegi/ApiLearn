@@ -31,7 +31,8 @@ function Profile(): JSX.Element {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.signIn}>this is profile page</Text>
+            <Text style={styles.input}>this is name</Text>
+            <Text style={styles.input}>this is email</Text>
         </View>
     );
 }

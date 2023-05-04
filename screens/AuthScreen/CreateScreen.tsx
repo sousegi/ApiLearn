@@ -43,7 +43,8 @@ function Create({ navigation}): JSX.Element {
         const data = await response.json();
 
         if (response.ok) {
-            Alert.alert('Registration successful');
+            // Alert.alert('Registration successful');
+            return navigation.navigate('SignScreen')
         } else {
             Alert.alert('Registration failed');
         }

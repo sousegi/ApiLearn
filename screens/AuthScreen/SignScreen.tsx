@@ -42,7 +42,7 @@ function Main({ navigation}): JSX.Element {
         const data = await response.json();
 
         if (response.ok) {
-            Alert.alert('Login successful');
+            return navigation.navigate('Profile')
         } else {
             Alert.alert('Login failed');
         }
@@ -54,9 +54,9 @@ function Main({ navigation}): JSX.Element {
     const create = () => {
         navigation.navigate('Create')
     }
-    const profile = () => {
-        navigation.navigate('Profile')
-    }
+    // const profile = () => {
+    //     navigation.navigate('Profile')
+    // }
 
     const backgroundStyle = {
         backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
