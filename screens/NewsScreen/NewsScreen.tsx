@@ -6,33 +6,48 @@
  */
 
 import React from 'react';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import type {PropsWithChildren} from 'react';
-import MainStack from './navigation/Navigation';
 import {
   TouchableOpacity,
-  Pressable,
   StyleSheet,
   Text,
   TextInput,
   useColorScheme,
-  View,
+  View, Button,
 } from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-
+import { BottomTabBar } from "@react-navigation/bottom-tabs";
 type SectionProps = PropsWithChildren<{
   title: string;
 }>;
 
-function App(): JSX.Element {
+function NewsScreen(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
+  function SettingsScreen() {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>Settings!</Text>
+      </View>
+    );
+  }
+
+
+  const Tab = createBottomTabNavigator();
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
   return (
-      <MainStack />
+    <View style={styles.container}>
+      <Text style={styles.input}>this is name</Text>
+      <Text style={styles.input}>this is email</Text>
+      <Tab.Navigator>
+        <Tab.Screen name="Settings" component={SettingsScreen} />
+      </Tab.Navigator>
+    </View>
   );
 }
 
@@ -62,7 +77,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
     alignItems: 'center',
-    backgroundColor: '#DB2927',
+    backgroundColor: '#0891b2',
   },
   login: {
     fontSize: 16,
@@ -86,4 +101,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+export default NewsScreen;

@@ -3,6 +3,7 @@ import SignScreen from '../screens/AuthScreen/SignScreen';
 import CreateScreen from '../screens/AuthScreen/CreateScreen';
 import ResetScreen from '../screens/AuthScreen/ResetScreen';
 import ProfileScreen from '../screens/AuthScreen/ProfileScreen';
+import NewsScreen from '../screens/NewsScreen/NewsScreen';
 
 import {createStackNavigator} from "@react-navigation/stack";
 import {NavigationContainer} from "@react-navigation/native";
@@ -15,6 +16,7 @@ export default function Navigate() {
             <Stack.Screen
                 name={'SignScreen'}
                 component={SignScreen}
+                options={{headerShown: false }}
                 />
             <Stack.Screen
                 name={'Create'}
@@ -27,6 +29,11 @@ export default function Navigate() {
             <Stack.Screen
                 name={'Profile'}
                 component={ProfileScreen}
+            />
+            <Stack.Screen
+              name={'NewsScreen'}
+              component={NewsScreen}
+              options={{headerShown: false, gestureEnabled: false }}
             />
         </Stack.Navigator>
     </NavigationContainer>;

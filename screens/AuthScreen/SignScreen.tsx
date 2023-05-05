@@ -42,7 +42,7 @@ function Main({ navigation}): JSX.Element {
         const data = await response.json();
 
         if (response.ok) {
-            return navigation.navigate('Profile')
+            return navigation.navigate('NewsScreen')
         } else {
             Alert.alert('Login failed');
         }
