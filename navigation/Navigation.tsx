@@ -3,10 +3,11 @@ import SignScreen from '../screens/AuthScreen/SignScreen';
 import CreateScreen from '../screens/AuthScreen/CreateScreen';
 import ResetScreen from '../screens/AuthScreen/ResetScreen';
 import ProfileScreen from '../screens/AuthScreen/ProfileScreen';
-import NewsScreen from '../screens/NewsScreen/NewsScreen';
+import HomeScreen from '../screens/NewsScreen/HomeScreen';
 
 import {createStackNavigator} from "@react-navigation/stack";
 import {NavigationContainer} from "@react-navigation/native";
+import ArticleScreen from "../screens/NewsScreen/ArticleScreen";
 
 const Stack = createStackNavigator();
 
@@ -31,9 +32,14 @@ export default function Navigate() {
                 component={ProfileScreen}
             />
             <Stack.Screen
-              name={'NewsScreen'}
-              component={NewsScreen}
+              name={'HomeScreen'}
+              component={HomeScreen}
               options={{headerShown: false, gestureEnabled: false }}
+            />
+            <Stack.Screen
+                name={'ArticleScreen'}
+                component={ArticleScreen}
+                options={{headerShown: false, gestureEnabled: false }}
             />
         </Stack.Navigator>
     </NavigationContainer>;

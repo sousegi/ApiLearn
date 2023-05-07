@@ -6,7 +6,6 @@
  */
 
 import React, {useState} from 'react';
-import type {PropsWithChildren} from 'react';
 import {
     TouchableOpacity,
     StyleSheet,
@@ -18,9 +17,6 @@ import {
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
-type SectionProps = PropsWithChildren<{
-    title: string;
-}>;
 
 function Main({ navigation}): JSX.Element {
     const isDarkMode = useColorScheme() === 'dark';
@@ -42,7 +38,7 @@ function Main({ navigation}): JSX.Element {
         const data = await response.json();
 
         if (response.ok) {
-            return navigation.navigate('NewsScreen')
+            return navigation.navigate('HomeScreen')
         } else {
             Alert.alert('Login failed');
         }
