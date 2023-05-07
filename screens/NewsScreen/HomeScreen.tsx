@@ -2,10 +2,9 @@ import * as React from 'react';
 import {Text, View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import Navigate from "../../navigation/Navigation";
 import Profile from "../AuthScreen/ProfileScreen";
 import ArticleScreen from "./ArticleScreen";
+import {MaterialCommunityIcons} from "@expo/vector-icons";
 
 
 const Tab = createBottomTabNavigator();
