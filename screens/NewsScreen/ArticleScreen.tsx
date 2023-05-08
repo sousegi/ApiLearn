@@ -52,8 +52,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   article: {
-    marginTop: 10,
+    marginTop: 5,
     flexDirection: 'row',
+    borderBottomColor: 'grey',
+    borderBottomWidth: 0.25,
+    paddingBottom: 15,
   },
   image: {
     height: 100,
