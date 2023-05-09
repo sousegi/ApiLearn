@@ -17,7 +17,7 @@ function HomeScreen() {
         tabBarActiveTintColor: '#0891b2',
       }}>
       <Tab.Screen
-        name="Home"
+        name="Articles"
         component={ArticleScreen}
         options={{
           tabBarLabel: 'Home',

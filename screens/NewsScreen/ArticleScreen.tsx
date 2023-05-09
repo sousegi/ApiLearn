@@ -6,28 +6,41 @@ import {
   Text,
   TouchableOpacity,
   View,
+  RefreshControl, ScrollView,
 } from 'react-native';
 import {useEffect, useState} from 'react';
+import {Loading} from "../../components/Loading";
 
-function ArticleScreen() {
+function ArticleScreen({navigation}) {
   const [articles, setArticles] = useState([]);
+  const [isLoading, setIsLoading] = React.useState(true);
+  const index = () => {
+    navigation.navigate('indexArticle')
+  }
 
   const fetchArticlesData = () => {
+    setIsLoading(true);
     fetch('https://test.dev.ourbox.org/api/articles')
       .then(response => {
         return response.json();
       })
       .then(data => {
         setArticles(data);
+      }).finally(() => {
+        setIsLoading(false);
       });
   };
   useEffect(() => {
     fetchArticlesData();
   }, []);
+
+  if (isLoading) {
+    return <Loading />;
+  }
   return (
-    <View>
+    <ScrollView>
       {articles.map(article => (
-        <TouchableOpacity>
+        <TouchableOpacity onPress={index}>
           <View style={styles.article}>
             <Image
               style={styles.image}
@@ -42,7 +55,7 @@ function ArticleScreen() {
           </View>
         </TouchableOpacity>
       ))}
-    </View>
+    </ScrollView>
   );
 }
 const styles = StyleSheet.create({

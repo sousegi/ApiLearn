@@ -8,6 +8,7 @@ import HomeScreen from '../screens/NewsScreen/HomeScreen';
 import {createStackNavigator} from "@react-navigation/stack";
 import {NavigationContainer} from "@react-navigation/native";
 import ArticleScreen from "../screens/NewsScreen/ArticleScreen";
+import indexArticle from "../screens/NewsScreen/indexArticle";
 
 const Stack = createStackNavigator();
 
@@ -34,12 +35,16 @@ export default function Navigate() {
             <Stack.Screen
               name={'HomeScreen'}
               component={HomeScreen}
-              options={{headerShown: false, gestureEnabled: false }}
+              options={{headerShown: false}}
             />
             <Stack.Screen
                 name={'ArticleScreen'}
                 component={ArticleScreen}
-                options={{headerShown: false, gestureEnabled: false }}
+            />
+            <Stack.Screen
+                name={'indexArticle'}
+                component={indexArticle}
+
             />
         </Stack.Navigator>
     </NavigationContainer>;
