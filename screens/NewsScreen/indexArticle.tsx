@@ -1,11 +1,8 @@
 import * as React from 'react';
 import {
-    Alert,
-    Image,
+    Image, ScrollView,
     StyleSheet,
     Text,
-    TouchableOpacity,
-    View,
 } from 'react-native';
 import {useEffect, useState} from 'react';
 import {Loading} from "../../components/Loading";
@@ -39,14 +36,14 @@ function Article({ route, navigation }) {
     }
 
     return (
-        <View>
-            <><Text style={styles.date}>{new Date(article.created_at).toLocaleDateString()}</Text><Text
-                style={styles.title}>{article.title}</Text><Image
+        <ScrollView>
+            <Text style={styles.date}>Publish Date {new Date(article.created_at).toLocaleDateString()}</Text>
+            <Text style={styles.title}>{article.title}</Text>
+            <Image
                 style={styles.image}
-                source={{
-                    uri: 'https://mimigram.ru/wp-content/uploads/2020/07/foto-kak-tehnologia.jpg',
-                }}/><Text style={styles.content}>{article.content}</Text></>
-        </View>
+                source={{ uri: article.image,}}/>
+            <Text style={styles.content}>{article.content}</Text>
+        </ScrollView>
     );
 }
 

@@ -40,14 +40,11 @@ function ArticleScreen({navigation}) {
   return (
     <ScrollView>
       {articles.map(article => (
-        <TouchableOpacity onPress={ () => navigation.navigate('indexArticle', { id: article.id, title: article.title })}>
+        <TouchableOpacity onPress={ () => navigation.navigate('indexArticle', { id: article.id, title: article.title})}>
           <View style={styles.article}>
             <Image
               style={styles.image}
-              source={{
-                uri: 'https://mimigram.ru/wp-content/uploads/2020/07/foto-kak-tehnologia.jpg',
-              }}
-            />
+              source={{ uri: article.image,}} />
             <View style={styles.text}>
               <Text style={styles.title}>{article.title}</Text>
               <Text style={styles.date}>{new Date(article.created_at).toLocaleDateString()}</Text>
