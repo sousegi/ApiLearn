@@ -8,24 +8,48 @@ import {
     View,
 } from 'react-native';
 import {useEffect, useState} from 'react';
+import {Loading} from "../../components/Loading";
 
-function Article() {
+function Article({ route, navigation }) {
+    const [article, setArticle] = useState([]);
+    const [isLoading, setIsLoading] = React.useState(true);
+    const { id, title } = route.params;
+
+    const fetchArticleData = () => {
+        navigation.setOptions({
+           title,
+        });
+        setIsLoading(true);
+        fetch('https://test.dev.ourbox.org/api/article/' + id)
+            .then(response => {
+                return response.json();
+            })
+            .then(data => {
+                setArticle(data);
+            }).finally(() => {
+            setIsLoading(false);
+        });
+    };
+    useEffect(() => {
+        fetchArticleData();
+    }, []);
+
+    if (isLoading) {
+        return <Loading/>;
+    }
 
     return (
         <View>
-            <Text style={styles.date}>09.05.2023</Text>
-            <Text style={styles.title}>12321 fdsf ds fdsfdsf dsf fdsvcdzx fdsf sefvcdx vdv 321</Text>
-            <Image
+            <><Text style={styles.date}>{new Date(article.created_at).toLocaleDateString()}</Text><Text
+                style={styles.title}>{article.title}</Text><Image
                 style={styles.image}
                 source={{
                     uri: 'https://mimigram.ru/wp-content/uploads/2020/07/foto-kak-tehnologia.jpg',
-                }}
-            />
-
-            <Text style={styles.content}>12321 fdsf ds fdsfdsf dsf fdsvcdzx fdsf sefvcdx vdv 321 12321 fdsf ds fdsfdsf dsf fdsvcdzx fdsf sefvcdx vdv 321 12321 fdsf ds fdsfdsf dsf fdsvcdzx fdsf sefvcdx vdv 321 12321 fdsf ds fdsfdsf dsf fdsvcdzx fdsf sefvcdx vdv 321</Text>
+                }}/><Text style={styles.content}>{article.content}</Text></>
         </View>
     );
 }
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
