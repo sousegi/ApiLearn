@@ -14,6 +14,7 @@ import {Loading} from "../../components/Loading";
 function ArticleScreen({navigation}) {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
+  const [refreshing, setRefreshing] = React.useState(false);
   // const index = () => {
   //   navigation.navigate('indexArticle')
   // }
@@ -34,11 +35,20 @@ function ArticleScreen({navigation}) {
     fetchArticlesData();
   }, []);
 
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 600);
+  }, []);
+
   if (isLoading) {
     return <Loading />;
   }
   return (
-    <ScrollView>
+    <ScrollView refreshControl={
+      <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+    }>
       {articles.map(article => (
         <TouchableOpacity onPress={ () => navigation.navigate('indexArticle', { id: article.id, title: article.title})}>
           <View style={styles.article}>
