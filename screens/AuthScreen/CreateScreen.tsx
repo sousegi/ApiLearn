@@ -22,7 +22,7 @@ type SectionProps = PropsWithChildren<{
     title: string;
 }>;
 
-function Create({ navigation}): JSX.Element {
+function Create({ navigation }): JSX.Element {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -40,30 +40,30 @@ function Create({ navigation}): JSX.Element {
             }),
         });
 
-        const data = await response.json();
-
         if (response.ok) {
             // Alert.alert('Registration successful');
             return navigation.navigate('SignScreen')
         } else {
-            Alert.alert('Registration failed');
+            Alert.alert('Logout failed');
         }
     };
-    const isDarkMode = useColorScheme() === 'dark';
 
-    const backgroundStyle = {
-        backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-    };
+    const sign = () => {
+        navigation.navigate('SignScreen')
+    }
 
     return (
         <View style={styles.container}>
-            <Text style={styles.signIn}>Sign In</Text>
+            <Text style={styles.signIn}>Create Account</Text>
             <Text style={styles.forgot}>with your email and password</Text>
             <TextInput style={styles.input} value={name} onChangeText={setName} placeholder="Enter Name" />
             <TextInput style={styles.input} value={email} onChangeText={setEmail} placeholder="Enter email" />
             <TextInput style={styles.input} value={password} onChangeText={setPassword} placeholder="Enter Password" secureTextEntry />
             <TouchableOpacity style={styles.button} onPress={handleRegister}>
                 <Text style={styles.login}>Create account</Text>
+            </TouchableOpacity>
+            <TouchableOpacity>
+                <Text style={styles.create} onPress={sign}>Sign In</Text>
             </TouchableOpacity>
         </View>
     );
@@ -85,15 +85,18 @@ const styles = StyleSheet.create({
         marginBottom: 12,
         margin: 10,
         padding: 10,
-        borderRadius: 10,
+        borderRadius: 5,
         borderWidth: 1,
+        backgroundColor: 'white',
+        borderColor: '#e8e8e8',
+        marginVertical: 0.1,
     },
     button: {
         height: 50,
         marginBottom: 12,
         margin: 10,
         padding: 10,
-        borderRadius: 10,
+        borderRadius: 5,
         alignItems: 'center',
         backgroundColor: '#0891b2',
     },
@@ -106,7 +109,7 @@ const styles = StyleSheet.create({
     forgot: {
         fontSize: 18,
         alignSelf: 'center',
-        padding: 30,
+        padding: 15,
     },
     reset: {
         alignSelf: 'center',
@@ -115,7 +118,8 @@ const styles = StyleSheet.create({
     create: {
         fontSize: 18,
         alignSelf: 'center',
-        color: '#1C58B2',
+        color: '#0891b2',
+        fontWeight: 500,
     },
 });
 

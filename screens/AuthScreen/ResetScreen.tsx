@@ -22,12 +22,16 @@ type SectionProps = PropsWithChildren<{
     title: string;
 }>;
 
-function Reset(): JSX.Element {
+function Reset({navigation}): JSX.Element {
     const isDarkMode = useColorScheme() === 'dark';
 
     const backgroundStyle = {
         backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
     };
+
+    const sign = () => {
+        navigation.navigate('SignScreen')
+    }
 
     return (
         <View style={styles.container}>
@@ -35,6 +39,9 @@ function Reset(): JSX.Element {
             <TextInput style={styles.input} placeholder="Enter email" />
             <TouchableOpacity style={styles.button}>
                 <Text style={styles.login}>Reset your Password</Text>
+            </TouchableOpacity>
+            <TouchableOpacity>
+                <Text style={styles.create} onPress={sign}>Sign In</Text>
             </TouchableOpacity>
         </View>
     );
@@ -56,15 +63,18 @@ const styles = StyleSheet.create({
         marginBottom: 12,
         margin: 10,
         padding: 10,
-        borderRadius: 10,
+        borderRadius: 5,
         borderWidth: 1,
+        backgroundColor: 'white',
+        borderColor: '#e8e8e8',
+        marginVertical: 0.1,
     },
     button: {
         height: 50,
         marginBottom: 12,
         margin: 10,
         padding: 10,
-        borderRadius: 10,
+        borderRadius: 5,
         alignItems: 'center',
         backgroundColor: '#0891b2',
     },
@@ -86,7 +96,8 @@ const styles = StyleSheet.create({
     create: {
         fontSize: 18,
         alignSelf: 'center',
-        color: '#1C58B2',
+        color: '#0891b2',
+        fontWeight: 500,
     },
 });
 

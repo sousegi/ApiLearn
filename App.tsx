@@ -9,13 +9,8 @@ import React from 'react';
 import type {PropsWithChildren} from 'react';
 import MainStack from './navigation/Navigation';
 import {
-  TouchableOpacity,
-  Pressable,
   StyleSheet,
-  Text,
-  TextInput,
   useColorScheme,
-  View,
 } from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';

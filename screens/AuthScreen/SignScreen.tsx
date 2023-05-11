@@ -35,9 +35,11 @@ function Main({ navigation}): JSX.Element {
             }),
         });
 
-        const data = await response.json();
+
 
         if (response.ok) {
+            const data = await response.json();
+            console.log(data);
             return navigation.navigate('HomeScreen')
         } else {
             Alert.alert('Login failed');
@@ -57,6 +59,10 @@ function Main({ navigation}): JSX.Element {
     const backgroundStyle = {
         backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
     };
+
+    const sign = () => {
+        navigation.navigate('SignScreen')
+    }
 
     return (
         <View style={styles.container}>
@@ -95,15 +101,18 @@ const styles = StyleSheet.create({
         marginBottom: 12,
         margin: 10,
         padding: 10,
-        borderRadius: 10,
+        borderRadius: 5,
         borderWidth: 1,
+        backgroundColor: 'white',
+        borderColor: '#e8e8e8',
+        marginVertical: 0.1,
     },
     button: {
         height: 50,
         marginBottom: 12,
         margin: 10,
         padding: 10,
-        borderRadius: 10,
+        borderRadius: 5,
         alignItems: 'center',
         backgroundColor: '#0891b2',
     },
@@ -121,11 +130,13 @@ const styles = StyleSheet.create({
     reset: {
         alignSelf: 'center',
         color: '#0891b2',
+        fontWeight: 500,
     },
     create: {
         fontSize: 18,
         alignSelf: 'center',
         color: '#0891b2',
+        fontWeight: 500,
     },
 });
 
