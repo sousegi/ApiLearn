@@ -9,6 +9,7 @@ import {createStackNavigator} from "@react-navigation/stack";
 import {NavigationContainer} from "@react-navigation/native";
 import ArticleScreen from "../screens/NewsScreen/ArticleScreen";
 import indexArticle from "../screens/NewsScreen/indexArticle";
+import AddScreen from "../screens/NewsScreen/AddScreen";
 import {AuthContext} from "../context/AuthContext";
 
 const Stack = createStackNavigator();
@@ -51,6 +52,10 @@ export default function Navigate() {
             <Stack.Screen
                 name={'indexArticle'}
                 component={indexArticle}
+            />
+            <Stack.Screen
+                name={'AddScreen'}
+                component={AddScreen}
             />
         </Stack.Navigator>
     </NavigationContainer>;

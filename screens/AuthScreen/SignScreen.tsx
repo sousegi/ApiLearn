@@ -12,7 +12,7 @@ import {
     Text,
     TextInput,
     useColorScheme,
-    View, Button, Alert,
+    View,
 } from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {AuthContext} from "../../context/AuthContext";

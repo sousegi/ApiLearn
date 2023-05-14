@@ -4,7 +4,10 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Profile from "../AuthScreen/ProfileScreen";
 import ArticleScreen from "./ArticleScreen";
-import {MaterialCommunityIcons} from "@expo/vector-icons";
+import { Ionicons,FontAwesome5,FontAwesome,AntDesign ,MaterialCommunityIcons} from '@expo/vector-icons';
+import AddScreen from "./AddScreen";
+
+
 
 
 const Tab = createBottomTabNavigator();
@@ -22,10 +25,20 @@ function HomeScreen() {
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: ({color, size}) => (
-            <MaterialCommunityIcons name="home" color={color} size={size} />
+              <AntDesign name="home" size={24} color="black" />
           ),
         }}
       />
+        <Tab.Screen
+            name="Add Article"
+            component={AddScreen}
+            options={{
+                tabBarLabel: 'ADD',
+                tabBarIcon: ({color, size}) => (
+                    <MaterialCommunityIcons name="account" color={color} size={size} />
+                ),
+            }}
+        />
       <Tab.Screen
         name="Profile"
         component={Profile}

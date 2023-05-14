@@ -1,5 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
+include ':react-native-vector-icons' project(':react-native-vector-icons').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-vector-icons/android'):
+
 buildscript {
     ext {
         buildToolsVersion = "33.0.0"

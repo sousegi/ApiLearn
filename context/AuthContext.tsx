@@ -7,6 +7,7 @@ export const AuthContext = createContext();
 export const AuthProvider = ({children}) => {
     const [userInfo, setUserInfo] = useState({});
     const [isLoading, setIsLoading] = React.useState(true);
+    const [articleInfo, setArticleInfo] = useState({});
 
     const register = (name, email, password) => {
         setIsLoading(true);
@@ -50,6 +51,27 @@ export const AuthProvider = ({children}) => {
             });
     };
 
+    const store = (title, content) => {
+        setIsLoading(true);
+        axios
+            .post('https://test.dev.ourbox.org/api/article/create', {
+                title,
+                content,
+            })
+            .then(res => {
+                let articleInfo = res.data;
+                console.log(articleInfo);
+                setArticleInfo(articleInfo);
+                AsyncStorage.setItem('articleInfo', JSON.stringify(articleInfo));
+                setIsLoading(false);
+                console.log(articleInfo);
+            })
+            .catch(e => {
+                console.log(`register error ${e}`);
+                setIsLoading(false);
+            });
+    };
+
     const logout = () => {
         setIsLoading(true);
 
@@ -79,9 +101,11 @@ export const AuthProvider = ({children}) => {
             value={{
                 isLoading,
                 userInfo,
+                articleInfo,
                 register,
                 login,
                 logout,
+                store,
             }}>
             {children}
         </AuthContext.Provider>
