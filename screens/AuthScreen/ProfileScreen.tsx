@@ -5,13 +5,14 @@
  * @format
  */
 
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import type {PropsWithChildren} from 'react';
 import {Alert, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from "axios";
+import {AuthContext} from "../../context/AuthContext";
 
-function Profile({}): JSX.Element {
+function Profile(): JSX.Element {
 
     // const handleLogout = async () => {
     //     const response = await fetch('https://test.dev.ourbox.org/api/auth/logout', {
@@ -29,30 +30,33 @@ function Profile({}): JSX.Element {
     //     }
     // };
 
-    const handleLogout = async () => {
-        const [ userInfo, setUserInfo] = useState({});
 
-        axios
-            .post(
-                'https://test.dev.ourbox.org/api/auth/logout',
-                {},
-                {
-                    headers: {Authorization: `Bearer ${userInfo.token}`},
-                },
-            ).then(response => {
-                console.log(response.data);
-                AsyncStorage.removeItem('userInfo');
-                setUserInfo({});
-        }).catch(e => {
-            console.log(`logout error ${e}`);
-        });
-    };
+    // const handleLogout = async () => {
+    //     const [ userInfo, setUserInfo] = useState({});
+    //
+    //     axios
+    //         .post(
+    //             'https://test.dev.ourbox.org/api/auth/logout',
+    //             {},
+    //             {
+    //                 headers: {Authorization: `Bearer ${userInfo.token}`},
+    //             },
+    //         ).then(response => {
+    //         let userInfo = response.data;
+    //             console.log(response.data);
+    //             AsyncStorage.removeItem('userInfo');
+    //             setUserInfo({});
+    //     }).catch(e => {
+    //         console.log(`logout error ${e}`);
+    //     });
+    // };
+    const {logout} = useContext(AuthContext);
 
     return (
         <View style={styles.container}>
             <TextInput style={styles.input}>this is name</TextInput>
             <Text>this is email</Text>
-            <TouchableOpacity style={styles.button} onPress={handleLogout}>
+            <TouchableOpacity style={styles.button} onPress={logout}>
                 <Text style={styles.login}>Logout</Text>
             </TouchableOpacity>
         </View>

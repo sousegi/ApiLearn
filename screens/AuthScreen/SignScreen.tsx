@@ -5,7 +5,7 @@
  * @format
  */
 
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {
     TouchableOpacity,
     StyleSheet,
@@ -14,37 +14,38 @@ import {
     useColorScheme,
     View, Button, Alert,
 } from 'react-native';
-
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+import {AuthContext} from "../../context/AuthContext";
 
 
 function Main({ navigation}): JSX.Element {
     const isDarkMode = useColorScheme() === 'dark';
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const {login} = useContext(AuthContext);
 
-    const handleLogin = async () => {
-        const response = await fetch('https://test.dev.ourbox.org/api/auth/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                email,
-                password,
-            }),
-        });
-
-
-
-        if (response.ok) {
-            const data = await response.json();
-            console.log(data);
-            return navigation.navigate('HomeScreen')
-        } else {
-            Alert.alert('Login failed');
-        }
-    };
+    // const handleLogin = async () => {
+    //     const response = await fetch('https://test.dev.ourbox.org/api/auth/login', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify({
+    //             email,
+    //             password,
+    //         }),
+    //     });
+    //
+    //
+    //
+    //     if (response.ok) {
+    //         const data = await response.json();
+    //         console.log(data);
+    //         return navigation.navigate('HomeScreen')
+    //     } else {
+    //         Alert.alert('Login failed');
+    //     }
+    // };
 
     const reset = () => {
         navigation.navigate('Reset')
@@ -52,17 +53,11 @@ function Main({ navigation}): JSX.Element {
     const create = () => {
         navigation.navigate('Create')
     }
-    // const profile = () => {
-    //     navigation.navigate('Profile')
-    // }
+
 
     const backgroundStyle = {
         backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
     };
-
-    const sign = () => {
-        navigation.navigate('SignScreen')
-    }
 
     return (
         <View style={styles.container}>
@@ -70,7 +65,7 @@ function Main({ navigation}): JSX.Element {
             <Text style={styles.forgot}>with your email and password</Text>
             <TextInput style={styles.input} value={email} onChangeText={setEmail} placeholder="Enter email" />
             <TextInput style={styles.input} value={password} onChangeText={setPassword} placeholder="Enter Password" secureTextEntry />
-            <TouchableOpacity style={styles.button} onPress={handleLogin}>
+            <TouchableOpacity style={styles.button} onPress={ () => {login(email, password)}}>
                 <Text style={styles.login}>Log In</Text>
             </TouchableOpacity>
             <Text style={styles.forgot}>

@@ -5,7 +5,7 @@
  * @format
  */
 
-import React, { useState } from 'react';
+import React, {useContext, useState} from 'react';
 import type {PropsWithChildren} from 'react';
 import {
     TouchableOpacity,
@@ -17,6 +17,7 @@ import {
 } from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+import {AuthContext} from "../../context/AuthContext";
 
 type SectionProps = PropsWithChildren<{
     title: string;
@@ -26,27 +27,28 @@ function Create({ navigation }): JSX.Element {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const {register} = useContext(AuthContext)
 
-    const handleRegister = async () => {
-        const response = await fetch('https://test.dev.ourbox.org/api/auth/register', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                name,
-                email,
-                password,
-            }),
-        });
-
-        if (response.ok) {
-            // Alert.alert('Registration successful');
-            return navigation.navigate('SignScreen')
-        } else {
-            Alert.alert('Logout failed');
-        }
-    };
+    // const handleRegister = async () => {
+    //     const response = await fetch('https://test.dev.ourbox.org/api/auth/register', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify({
+    //             name,
+    //             email,
+    //             password,
+    //         }),
+    //     });
+    //
+    //     if (response.ok) {
+    //         // Alert.alert('Registration successful');
+    //         return navigation.navigate('SignScreen')
+    //     } else {
+    //         Alert.alert('Logout failed');
+    //     }
+    // };
 
     const sign = () => {
         navigation.navigate('SignScreen')
@@ -59,7 +61,9 @@ function Create({ navigation }): JSX.Element {
             <TextInput style={styles.input} value={name} onChangeText={setName} placeholder="Enter Name" />
             <TextInput style={styles.input} value={email} onChangeText={setEmail} placeholder="Enter email" />
             <TextInput style={styles.input} value={password} onChangeText={setPassword} placeholder="Enter Password" secureTextEntry />
-            <TouchableOpacity style={styles.button} onPress={handleRegister}>
+            <TouchableOpacity style={styles.button} onPress={() => {
+                register(name, email, password);
+            }}>
                 <Text style={styles.login}>Create account</Text>
             </TouchableOpacity>
             <TouchableOpacity>
