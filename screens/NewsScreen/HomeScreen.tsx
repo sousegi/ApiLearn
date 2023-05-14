@@ -6,6 +6,7 @@ import Profile from "../AuthScreen/ProfileScreen";
 import ArticleScreen from "./ArticleScreen";
 import { Ionicons,FontAwesome5,FontAwesome,AntDesign ,MaterialCommunityIcons} from '@expo/vector-icons';
 import AddScreen from "./AddScreen";
+import MyArticle from "./MyArticle";
 
 
 
@@ -49,6 +50,16 @@ function HomeScreen() {
           ),
         }}
       />
+        <Tab.Screen
+            name="My Article"
+            component={MyArticle}
+            options={{
+                tabBarLabel: 'My Article',
+                tabBarIcon: ({color, size}) => (
+                    <MaterialCommunityIcons name="account" color={color} size={size} />
+                ),
+            }}
+        />
     </Tab.Navigator>
   );
 }

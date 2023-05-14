@@ -11,6 +11,7 @@ import ArticleScreen from "../screens/NewsScreen/ArticleScreen";
 import indexArticle from "../screens/NewsScreen/indexArticle";
 import AddScreen from "../screens/NewsScreen/AddScreen";
 import {AuthContext} from "../context/AuthContext";
+import MyArticle from "../screens/NewsScreen/MyArticle";
 
 const Stack = createStackNavigator();
 
@@ -56,6 +57,10 @@ export default function Navigate() {
             <Stack.Screen
                 name={'AddScreen'}
                 component={AddScreen}
+            />
+            <Stack.Screen
+                name={'MyArticle'}
+                component={MyArticle}
             />
         </Stack.Navigator>
     </NavigationContainer>;
