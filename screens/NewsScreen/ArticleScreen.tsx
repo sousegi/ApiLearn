@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import {useEffect, useState} from 'react';
 import {Loading} from "../../components/Loading";
+import axios from "axios";
 
 function ArticleScreen({navigation}) {
   const [articles, setArticles] = useState([]);
@@ -34,6 +35,7 @@ function ArticleScreen({navigation}) {
   useEffect(() => {
     fetchArticlesData();
   }, []);
+
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);

@@ -18,7 +18,7 @@ function MyArticle({navigation}) {
 
     const fetchArticlesData = () => {
         setIsLoading(true);
-        fetch('https://test.dev.ourbox.org/api/articles')
+        fetch('https://test.dev.ourbox.org/api/myarticles')
             .then(response => {
                 return response.json();
             })
