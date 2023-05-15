@@ -1,15 +1,10 @@
 import * as React from 'react';
-import {Text, View} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Profile from "../AuthScreen/ProfileScreen";
-import ArticleScreen from "./ArticleScreen";
-import { Ionicons,FontAwesome5,FontAwesome,AntDesign ,MaterialCommunityIcons} from '@expo/vector-icons';
-import AddScreen from "./AddScreen";
-import MyArticle from "./MyArticle";
-
-
-
+import Profile from '../AuthScreen/ProfileScreen';
+import ArticleScreen from './ArticleScreen';
+import AddScreen from './AddScreen';
+import MyArticle from './MyArticle';
+import {MaterialCommunityIcons} from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator();
 
@@ -26,20 +21,20 @@ function HomeScreen() {
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: ({color, size}) => (
-              <AntDesign name="home" size={24} color="black" />
+            <MaterialCommunityIcons name="home" size={size} color={color} />
           ),
         }}
       />
-        <Tab.Screen
-            name="Add Article"
-            component={AddScreen}
-            options={{
-                tabBarLabel: 'ADD',
-                tabBarIcon: ({color, size}) => (
-                    <MaterialCommunityIcons name="account" color={color} size={size} />
-                ),
-            }}
-        />
+      <Tab.Screen
+        name="Add Article"
+        component={AddScreen}
+        options={{
+          tabBarLabel: 'ADD',
+          tabBarIcon: ({color, size}) => (
+            <MaterialCommunityIcons name="account" color={color} size={size} />
+          ),
+        }}
+      />
       <Tab.Screen
         name="Profile"
         component={Profile}
@@ -50,16 +45,16 @@ function HomeScreen() {
           ),
         }}
       />
-        <Tab.Screen
-            name="My Article"
-            component={MyArticle}
-            options={{
-                tabBarLabel: 'My Article',
-                tabBarIcon: ({color, size}) => (
-                    <MaterialCommunityIcons name="account" color={color} size={size} />
-                ),
-            }}
-        />
+      <Tab.Screen
+        name="My Article"
+        component={MyArticle}
+        options={{
+          tabBarLabel: 'My Article',
+          tabBarIcon: ({color, size}) => (
+            <MaterialCommunityIcons name="account" color={color} size={size} />
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 }

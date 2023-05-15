@@ -23,8 +23,7 @@ function ArticleScreen({navigation}) {
     setIsLoading(true);
     fetch('https://test.dev.ourbox.org/api/articles')
       .then(response => {
-          return response.json();
-
+        return response.json();
       })
       .then(data => {
         setArticles(data);
