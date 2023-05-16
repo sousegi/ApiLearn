@@ -95,12 +95,32 @@ export const AuthProvider = ({children}) => {
       });
   };
 
+  // const isLoggedIn = async () =>{
+  //     try {
+  //         let userInfo = await AsyncStorage.getItem('userInfo');
+  //         if (typeof userInfo === "string") {
+  //             userInfo = JSON.parse(userInfo);
+  //         }
+  //
+  //         if (userInfo) {
+  //             setUserInfo(userInfo);
+  //         }
+  //     } catch (e) {
+  //         console.log(`Is logged in error ${e}`);
+  //     }
+  // };
+  //
+  // useEffect(() => {
+  //     isLoggedIn();
+  // },[])
+
   return (
     <AuthContext.Provider
       value={{
         isLoading,
         userInfo,
         articleInfo,
+        // isLoggedIn,
         register,
         login,
         logout,
