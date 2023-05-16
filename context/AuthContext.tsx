@@ -51,26 +51,26 @@ export const AuthProvider = ({children}) => {
       });
   };
 
-  const store = (title, content) => {
-    setIsLoading(true);
-    axios
-      .post('https://test.dev.ourbox.org/api/article/create', {
-        title,
-        content,
-      })
-      .then(res => {
-        let articleInfo = res.data;
-        console.log(articleInfo);
-        setArticleInfo(articleInfo);
-        AsyncStorage.setItem('articleInfo', JSON.stringify(articleInfo));
-        setIsLoading(false);
-        console.log(articleInfo);
-      })
-      .catch(e => {
-        console.log(`register error ${e}`);
-        setIsLoading(false);
-      });
-  };
+  // const store = (title, content) => {
+  //   setIsLoading(true);
+  //   axios
+  //     .post('https://test.dev.ourbox.org/api/article/create', {
+  //       title,
+  //       content,
+  //     })
+  //     .then(res => {
+  //       let articleInfo = res.data;
+  //       console.log(articleInfo);
+  //       setArticleInfo(articleInfo);
+  //       AsyncStorage.setItem('articleInfo', JSON.stringify(articleInfo));
+  //       setIsLoading(false);
+  //       console.log(articleInfo);
+  //     })
+  //     .catch(e => {
+  //       console.log(`register error ${e}`);
+  //       setIsLoading(false);
+  //     });
+  // };
 
   const logout = () => {
     setIsLoading(true);
@@ -95,24 +95,21 @@ export const AuthProvider = ({children}) => {
       });
   };
 
-  // const isLoggedIn = async () =>{
-  //     try {
-  //         let userInfo = await AsyncStorage.getItem('userInfo');
-  //         if (typeof userInfo === "string") {
-  //             userInfo = JSON.parse(userInfo);
-  //         }
-  //
-  //         if (userInfo) {
-  //             setUserInfo(userInfo);
-  //         }
-  //     } catch (e) {
-  //         console.log(`Is logged in error ${e}`);
-  //     }
-  // };
-  //
-  // useEffect(() => {
-  //     isLoggedIn();
-  // },[])
+  const isLoggedIn = async () =>{
+      try {
+          let userInfo = await AsyncStorage.getItem('userInfo');
+          userInfo = JSON.parse(userInfo);
+          if (userInfo) {
+              setUserInfo(userInfo);
+          }
+      } catch (e) {
+          console.log(`Is logged in error ${e}`);
+      }
+  };
+
+  useEffect(() => {
+      isLoggedIn();
+  },[])
 
   return (
     <AuthContext.Provider
@@ -120,11 +117,11 @@ export const AuthProvider = ({children}) => {
         isLoading,
         userInfo,
         articleInfo,
-        // isLoggedIn,
+        isLoggedIn,
         register,
         login,
         logout,
-        store,
+        // store,
       }}>
       {children}
     </AuthContext.Provider>

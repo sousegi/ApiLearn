@@ -22,11 +22,18 @@ export default function Navigate() {
     <NavigationContainer>
       <Stack.Navigator>
         {userInfo.token ? (
-          <Stack.Screen
-            name={'HomeScreen'}
-            component={HomeScreen}
-            options={{headerShown: false}}
-          />
+            <>
+              <Stack.Screen
+                  name={'HomeScreen'}
+                  component={HomeScreen}
+                  options={{headerShown: false}}
+              />
+              <Stack.Screen name={'Profile'} component={ProfileScreen} />
+              <Stack.Screen name={'ArticleScreen'} component={ArticleScreen} />
+              <Stack.Screen name={'indexArticle'} component={indexArticle} />
+              <Stack.Screen name={'AddScreen'} component={AddScreen} />
+              <Stack.Screen name={'MyArticle'} component={MyArticle} />
+            </>
         ) : (
           <>
             <Stack.Screen
@@ -38,12 +45,6 @@ export default function Navigate() {
             <Stack.Screen name={'Reset'} component={ResetScreen} />
           </>
         )}
-        <Stack.Screen name={'Profile'} component={ProfileScreen} />
-
-        <Stack.Screen name={'ArticleScreen'} component={ArticleScreen} />
-        <Stack.Screen name={'indexArticle'} component={indexArticle} />
-        <Stack.Screen name={'AddScreen'} component={AddScreen} />
-        <Stack.Screen name={'MyArticle'} component={MyArticle} />
       </Stack.Navigator>
     </NavigationContainer>
   );
