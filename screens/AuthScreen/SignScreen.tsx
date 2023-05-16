@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     input: {
         height: 50,
         marginBottom: 12,
-        margin: 10,
+        margin: 40,
         padding: 10,
         borderRadius: 5,
         borderWidth: 1,
@@ -105,11 +105,12 @@ const styles = StyleSheet.create({
     button: {
         height: 50,
         marginBottom: 12,
-        margin: 10,
+        margin: 40,
         padding: 10,
         borderRadius: 5,
         alignItems: 'center',
         backgroundColor: '#0891b2',
+        marginVertical: 10,
     },
     login: {
         fontSize: 16,
