@@ -6,36 +6,46 @@ import {
   Text,
   TouchableOpacity,
   View,
-  RefreshControl, ScrollView,
+  RefreshControl,
+  ScrollView,
 } from 'react-native';
 import {useEffect, useState} from 'react';
-import {Loading} from "../../components/Loading";
-import axios from "axios";
+import {Loading} from '../../components/Loading';
+import axios from 'axios';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 function ArticleScreen({navigation}) {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
   const [refreshing, setRefreshing] = React.useState(false);
+  const [userInfo, setUserInfo] = useState({});
   // const index = () => {
   //   navigation.navigate('indexArticle')
   // }
 
-  const fetchArticlesData = () => {
+  const fetchArticlesData = async () => {
+    const token = await AsyncStorage.getItem('userInfo');
+    console.log(token);
     setIsLoading(true);
-    fetch('https://test.dev.ourbox.org/api/articles')
+    fetch('https://test.dev.ourbox.org/api/articles', {
+      headers: {Authorization: `${token}`}})
       .then(response => {
-        return response.json();
+        console.log(response);
+        return [];
       })
       .then(data => {
         setArticles(data);
-      }).finally(() => {
+      })
+      .catch(error => {
+        console.log(error);
+      })
+      .finally(() => {
         setIsLoading(false);
       });
   };
   useEffect(() => {
     fetchArticlesData();
   }, []);
-
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
@@ -48,18 +58,25 @@ function ArticleScreen({navigation}) {
     return <Loading />;
   }
   return (
-    <ScrollView refreshControl={
-      <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-    }>
+    <ScrollView
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+      }>
       {articles.map(article => (
-        <TouchableOpacity onPress={ () => navigation.navigate('indexArticle', { id: article.id, title: article.title})}>
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate('indexArticle', {
+              id: article.id,
+              title: article.title,
+            })
+          }>
           <View style={styles.article}>
-            <Image
-              style={styles.image}
-              source={{ uri: article.image,}} />
+            <Image style={styles.image} source={{uri: article.image}} />
             <View style={styles.text}>
               <Text style={styles.title}>{article.title}</Text>
-              <Text style={styles.date}>{new Date(article.created_at).toLocaleDateString()}</Text>
+              <Text style={styles.date}>
+                {new Date(article.created_at).toLocaleDateString()}
+              </Text>
             </View>
           </View>
         </TouchableOpacity>
