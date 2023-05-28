@@ -23,25 +23,17 @@ function ArticleScreen({navigation}) {
   //   navigation.navigate('indexArticle')
   // }
 
-  const fetchArticlesData = async () => {
-    const token = await AsyncStorage.getItem('userInfo');
-    console.log(token);
+  const fetchArticlesData = () => {
     setIsLoading(true);
-    fetch('https://test.dev.ourbox.org/api/articles', {
-      headers: {Authorization: `${token}`}})
-      .then(response => {
-        console.log(response);
-        return [];
-      })
-      .then(data => {
-        setArticles(data);
-      })
-      .catch(error => {
-        console.log(error);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+    fetch('https://test.dev.ourbox.org/api/articles')
+        .then(response => {
+          return response.json();
+        })
+        .then(data => {
+          setArticles(data);
+        }).finally(() => {
+      setIsLoading(false);
+    });
   };
   useEffect(() => {
     fetchArticlesData();
